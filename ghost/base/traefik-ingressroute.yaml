@@ -1,0 +1,32 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ghost
+  namespace: default
+  annotations: {}
+  labels:
+    app: ghost
+    version: v3.6.0
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`ghost.123456789012.sandbox.fogops.io`)
+    kind: Rule
+    services:
+    - name: ghost
+      kind: TraefikService
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: TraefikService
+metadata:
+  name: ghost
+  namespace: default
+
+spec:
+  weighted:
+    services:
+      - name: ghost
+        port: 2368
+        weight: 1

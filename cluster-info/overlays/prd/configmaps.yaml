@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-info
+data:
+  clusterName: prd.123456789012.sandbox.fogops.io
+  environment: production
+  environment_short: prd

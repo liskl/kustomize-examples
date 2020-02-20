@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ghost
+  namespace: default
+  labels:
+    app: ghost
+    version: v3.6.0
+    liskl.com/managedBy: "loren.lisk-at-liskl.com"
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      protocol: TCP
+      port: 2368
+      targetPort: http
+  selector:
+    app: ghost
+    version: v3.6.0

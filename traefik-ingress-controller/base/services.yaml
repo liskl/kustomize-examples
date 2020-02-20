@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik
+  labels:
+    app: traefik
+    version: 2.1.3
+  namespace: kube-system
+  annotations: {}
+spec:
+  type: NodePort
+  selector:
+    app: traefik
+    version: 2.1.3
+  ports:
+  - port: 9000
+    name: traefik
+    targetPort: "traefik"
+  - port: 8000
+    name: web
+    targetPort: "web"
+  - port: 8443
+    name: websecure
+    targetPort: "websecure"

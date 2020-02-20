@@ -1,0 +1,14 @@
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: "ghost"
+  namespace: default
+spec:
+  rules:
+    - host: ghost.123456789012.sandbox.fogops.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: ghost
+              servicePort: http
